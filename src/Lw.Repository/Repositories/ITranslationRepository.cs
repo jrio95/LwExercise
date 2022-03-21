@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lw.Service.Services
+namespace Lw.Repository.Repositories
 {
-    public interface ITranslateService
+    public interface ITranslationRepository
     {
     }
 }

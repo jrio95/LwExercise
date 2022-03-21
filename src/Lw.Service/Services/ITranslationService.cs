@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lw.Service.Services
 {
-    public class TranslateService : ITranslateService
+    /// <summary>
+    /// ITranslateService
+    /// </summary>
+    public interface ITranslationService
     {
     }
 }

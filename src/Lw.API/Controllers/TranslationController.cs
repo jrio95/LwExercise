@@ -1,3 +1,4 @@
+using Lw.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lw.API.Controllers
@@ -7,17 +8,20 @@ namespace Lw.API.Controllers
     /// </summary>
     [ApiController]  
     [Route("lw")]
-    public class TranslateController : ControllerBase
+    public class TranslationController : ControllerBase
     {
-        private readonly ILogger<TranslateController> _logger;
+        /// <summary>
+        /// Translation service
+        /// </summary>
+        private readonly ITranslationService _translationService;
 
         /// <summary>
         /// Translate controller ctor
         /// </summary>
         /// <param name="logger"></param>
-        public TranslateController(ILogger<TranslateController> logger)
+        public TranslationController(ITranslationService translationService)
         {
-            _logger = logger;
+            this._translationService = translationService;
         }
 
         /// <summary>
