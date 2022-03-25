@@ -1,3 +1,6 @@
+using Lw.API.Filters;
+using Lw.DTO.DTOs;
+using Lw.DTO.Enums;
 using Lw.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,20 +21,26 @@ namespace Lw.API.Controllers
         /// <summary>
         /// Translate controller ctor
         /// </summary>
-        /// <param name="logger"></param>
         public TranslationController(ITranslationService translationService)
         {
             this._translationService = translationService;
-        }
+         }
 
         /// <summary>
-        /// Get translate endpoint
+        /// Get translation endpoint
         /// </summary>
+        /// <param name="sentence">Sentence to translate Jeringonza</param>
         /// <returns></returns>
         [HttpGet("translate")]
-        public IEnumerable<ActionResult> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TranslationDTO>))]
+        public ActionResult Get()
         {
-            return null;
+            List<TranslationDTO> result = new List<TranslationDTO>();
+
+            LanguageEnum? lang = AcceptLanguageFilter.GetEnumFromAcceptLanguage(Request.Headers["Accept-Language"]);
+            result = _translationService.GetTranslation(lang, 1).ToList();
+
+            return StatusCode(200, result);
         }
     }
 }

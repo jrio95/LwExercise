@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ namespace Lw.Domain.Entities
         /// <summary>
         /// Translation identifier
         /// </summary>
+        [Key]
         public int TranslationId { get; set; }
 
         /// <summary>
@@ -27,8 +30,8 @@ namespace Lw.Domain.Entities
         public int LanguageId { get; set; }
 
         /// <summary>
-        /// Sentence identifier
+        /// Translated sentence
         /// </summary>
-        public string Sentence { get; set; }
+        public string TranslatedSentence { get; set; }
     }
 }
