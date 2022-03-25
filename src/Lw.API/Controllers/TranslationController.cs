@@ -32,14 +32,14 @@ namespace Lw.API.Controllers
         /// <returns>List of translations</returns>
         [HttpGet("translate")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TranslationDTO>))]
-        public ActionResult Get()
+        public ActionResult GetTranslation()
         {
             List<TranslationDTO> result = new List<TranslationDTO>();
 
             LanguageEnum? lang = AcceptLanguageFilter.GetEnumFromAcceptLanguage(Request.Headers["Accept-Language"]);
             result = _translationService.GetTranslation(lang, 1).ToList();
 
-            return StatusCode(200, result);
+            return Ok(result);
         }
     }
 }
