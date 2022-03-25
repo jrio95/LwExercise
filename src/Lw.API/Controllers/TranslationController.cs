@@ -29,8 +29,7 @@ namespace Lw.API.Controllers
         /// <summary>
         /// Get translation endpoint
         /// </summary>
-        /// <param name="sentence">Sentence to translate Jeringonza</param>
-        /// <returns></returns>
+        /// <returns>List of translations</returns>
         [HttpGet("translate")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TranslationDTO>))]
         public ActionResult Get()

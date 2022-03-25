@@ -23,11 +23,6 @@ namespace Lw.Service.Services
         private readonly ITranslationRepository _translationRepository;
 
         /// <summary>
-        /// Configuration
-        /// </summary>
-        private readonly IConfiguration _configuration;
-
-        /// <summary>
         /// Mapper
         /// </summary>
         private readonly IMapper _mapper;
@@ -35,10 +30,9 @@ namespace Lw.Service.Services
         /// <summary>
         /// Translate service ctor
         /// </summary>
-        public TranslationService(ITranslationRepository translationRepository, IConfiguration configuration, IMapper mapper)
+        public TranslationService(ITranslationRepository translationRepository, IMapper mapper)
         {
             this._translationRepository = translationRepository;
-            this._configuration = configuration;
             this._mapper = mapper;
          }
 
