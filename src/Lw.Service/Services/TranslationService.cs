@@ -37,11 +37,11 @@ namespace Lw.Service.Services
          }
 
         /// <summary>
-        /// Gets the translation
+        /// Gets the translations
         /// </summary>
-        /// <param name="language">Language to filter</param>
+        /// <param name="language">Language to filter, if its null it will return all available languages</param>
         /// <param name="sentenceId">Sentence identifier</param>
-        /// <returns>The translation</returns>
+        /// <returns>The translations</returns>
         public IEnumerable<TranslationDTO> GetTranslation(LanguageEnum? language, int sentenceId)
         {
             List<TranslationDTO> translationList = new List<TranslationDTO>();

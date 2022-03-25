@@ -14,11 +14,11 @@ namespace Lw.Service.Services
     public interface ITranslationService
     {
         /// <summary>
-        /// Gets the translation
+        /// Gets the translations
         /// </summary>
-        /// <param name="language">Language to filter</param>
+        /// <param name="language">Language to filter, if its null it will return all available languages</param>
         /// <param name="sentenceId">Sentence identifier</param>
-        /// <returns>The translation</returns>
+        /// <returns>The translations</returns>
         IEnumerable<TranslationDTO> GetTranslation(LanguageEnum? language, int sentenceId);
     }
 }
