@@ -19,22 +19,28 @@ builder.Services.AddSwaggerGen( options =>
 {
     options.OperationFilter<AcceptLanguageFilter>();
 });
-
+// Json response options
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     options.JsonSerializerOptions.IgnoreNullValues = true;
 });
 
+//Depndency injection
 builder.Services
     .AddScoped<ITranslationService, TranslationService>()
     .AddScoped<ITranslationRepository, TranslationRepository>();
 
+//Automapper injection
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfiles)));
 
+// DbContext
 builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("db")));
 
 var app = builder.Build();
+
+// Custom Exception Handler
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

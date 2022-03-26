@@ -1,4 +1,5 @@
 ﻿using Lw.DTO.Enums;
+using Lw.DTO.Exceptions;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -36,12 +37,12 @@ namespace Lw.API.Filters
                 return null;
             }
 
-            if (Enum.TryParse(headerValue.Replace("-", "_"), out LanguageEnum lang))
+            if (!Enum.TryParse(headerValue.Replace("-", "_"), out LanguageEnum lang))
             {
-                return lang;
+                throw new ApiBadRequestException(String.Format("Specified Accept-Language {0} not supported", headerValue));
             }
 
-            return null;
+            return lang;
         }
     }
 }
