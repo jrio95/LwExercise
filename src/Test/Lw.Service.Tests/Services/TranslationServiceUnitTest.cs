@@ -77,6 +77,7 @@ namespace Lw.API.Tests.Controllers
             {
                 TranslationId = 1,
                 LanguageId = 2,
+                SentenceId = 1,
                 TranslatedSentence = "Hola"
             };
         }
@@ -87,6 +88,7 @@ namespace Lw.API.Tests.Controllers
             {
                 TranslationId = 1,
                 LanguageId = 2,
+                SentenceId = 1,
                 TranslatedSentence = "Hola"
             };
 
@@ -94,6 +96,7 @@ namespace Lw.API.Tests.Controllers
             {
                 TranslationId = 2,
                 LanguageId = 1,
+                SentenceId = 1,
                 TranslatedSentence = "Hi"
             };
 

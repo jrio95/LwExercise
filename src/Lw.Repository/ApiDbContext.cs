@@ -14,6 +14,10 @@ namespace Lw.Repository
     /// </summary>
     public class ApiDbContext : DbContext
     {
+        public ApiDbContext()
+        {
+
+        }
 
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
@@ -49,11 +53,11 @@ namespace Lw.Repository
         /// <summary>
         /// Translations
         /// </summary>
-        public DbSet<Translation> Translations { get; set; }
+        public virtual DbSet<Translation> Translations { get; set; }
 
         /// <summary>
         /// Languages
         /// </summary>
-        public DbSet<Language> Languages { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
     }
 }
