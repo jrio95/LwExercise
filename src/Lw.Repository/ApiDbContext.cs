@@ -16,7 +16,6 @@ namespace Lw.Repository
     {
         public ApiDbContext()
         {
-
         }
 
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
@@ -25,17 +24,20 @@ namespace Lw.Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var configuration = new ConfigurationBuilder().Build();
-
-            var connectionString = configuration.GetConnectionString("db");
-            optionsBuilder.UseSqlServer();
-            base.OnConfiguring(optionsBuilder);
+            if (optionsBuilder.IsConfigured)
+            {
+                base.OnConfiguring(optionsBuilder);
+            }
+            else
+            {
+                optionsBuilder.UseSqlServer("Name=db");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Translation>().HasOne<Language>().WithMany().HasForeignKey(x => x.LanguageId);
-            modelBuilder.Entity<Translation>().HasIndex(x => new { x.LanguageId, x.SentenceId });
+            modelBuilder.Entity<Translation>().HasAlternateKey(x => new { x.LanguageId, x.SentenceId });
 
             modelBuilder.Entity<Language>().HasData(new Language() { LanguageId = 1, Name = "English"});
             modelBuilder.Entity<Language>().HasData(new Language() { LanguageId = 2, Name = "Spanish" });
@@ -48,6 +50,8 @@ namespace Lw.Repository
             modelBuilder.Entity<Translation>().HasData(new Translation() { TranslationId = 3, LanguageId = 3, SentenceId = 1, TranslatedSentence = "Bonjour. Comment allez-vous?" });
             modelBuilder.Entity<Translation>().HasData(new Translation() { TranslationId = 4, LanguageId = 4, SentenceId = 1, TranslatedSentence = "Hallo. Wie geht es Ihnen?" });
             modelBuilder.Entity<Translation>().HasData(new Translation() { TranslationId = 5, LanguageId = 5, SentenceId = 1, TranslatedSentence = "Olá. Como está?" });
+
+            base.OnModelCreating(modelBuilder);
         }
 
         /// <summary>
