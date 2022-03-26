@@ -35,9 +35,10 @@ namespace Lw.API.Controllers
         public ActionResult GetTranslation()
         {
             List<TranslationDTO> result = new List<TranslationDTO>();
+            int HelloSentenceId = 1;
 
             LanguageEnum? lang = AcceptLanguageFilter.GetEnumFromAcceptLanguage(Request.Headers["Accept-Language"]);
-            result = _translationService.GetTranslation(lang, 1).ToList();
+            result = _translationService.GetTranslation(lang, HelloSentenceId).ToList();
 
             return Ok(result);
         }
