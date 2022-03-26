@@ -34,8 +34,8 @@ namespace Lw.API.Controllers
         /// <returns>List of translations</returns>
         [HttpGet("translate")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TranslationDTO>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(List<ErrorDTO>))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(List<ErrorDTO>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorDTO))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorDTO))]
         public ActionResult GetTranslation()
         {
             List<TranslationDTO> result = new List<TranslationDTO>();
