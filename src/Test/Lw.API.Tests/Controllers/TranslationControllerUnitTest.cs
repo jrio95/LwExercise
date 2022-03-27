@@ -1,6 +1,7 @@
 ﻿using Lw.API.Controllers;
 using Lw.DTO.DTOs;
 using Lw.DTO.Enums;
+using Lw.DTO.Exceptions;
 using Lw.Service.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,15 @@ namespace Lw.API.Tests.Controllers
         {
             var translationServiceMock = new Mock<ITranslationService>();
             translationServiceMock.Setup(x => x.GetTranslation(It.IsAny<LanguageEnum?>(), It.IsAny<int>())).Returns(ListTranslationDTOMock());
+            translationServiceMock.Setup(x => x.GetTranslation(LanguageEnum.pt_PT, It.IsAny<int>())).Returns(new List<TranslationDTO>());
+
+            return translationServiceMock.Object;
+        }
+
+        public ITranslationService SetUpTranslationServiceNotFound()
+        {
+            var translationServiceMock = new Mock<ITranslationService>();
+            translationServiceMock.Setup(x => x.GetTranslation(It.IsAny<LanguageEnum?>(), It.IsAny<int>())).Returns(new List<TranslationDTO>());
 
             return translationServiceMock.Object;
         }
@@ -81,6 +91,17 @@ namespace Lw.API.Tests.Controllers
             Assert.AreEqual(translationListResult[1].TranslationId, translationListMock[1].TranslationId);
             Assert.AreEqual(translationListResult[1].LanguageISO, translationListMock[1].LanguageISO);
             Assert.AreEqual(translationListResult[1].TranslatedSentence, translationListMock[1].TranslatedSentence);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ApiNotFoundException),
+            "No translations were found")]
+        public void GetTranslation_ReturnNull_ThenNotFound()
+        {
+            _translationController.ControllerContext.HttpContext.Request.Headers.AcceptLanguage = "pt-PT";
+
+            _translationController.GetTranslation();
+
         }
     }
 }
