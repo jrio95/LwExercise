@@ -4,9 +4,9 @@ Hi! :wave:
 
 ## Usage
 
-I have chosen to implement the functionality of the translation of “Hello. How are you?” to/from 5 languages, I have decided to return one language if it is indicated in the Accept-Language header or all languages available if there is no Accept-Language header.
+I have chosen to implement the functionality of translation of “Hello. How are you?” to/from 5 languages, I have decided to return one language if it is indicated in the Accept-Language header or all languages available if there is no Accept-Language header.
 
-The url of the azure deployment where you cand find the open api docuemntation is:
+The url of the azure deployment where you cand find the open api documentation is:
 
 <https://lwtestapi.azurewebsites.net/>
 
@@ -18,7 +18,7 @@ Once you get in there, It will show the open api documentation and you can make 
 
 ## Build and run locally
 
- To build and run this solution locally, you need to have a sqlserver (2019 version if possible). Once you have the sqlserver you have to either get in Package Manager Console of your visual studio or in a powershell in administrator mode and go to the Lw.Api directory (..\LwExercise\src\Lw.API) and execute the command:
+ To build and run this solution locally, you need to have a sqlserver (2019 version if possible). Once you have the sqlserver, you have to either get in Package Manager Console of your visual studio or in a powershell in administrator mode and go to the Lw.Api directory (..\LwExercise\src\Lw.API) and execute the command:
 
  ```bash
 dotnet ef update database
@@ -26,5 +26,5 @@ dotnet ef update database
 
  In order to get the database, its tables and the initial data deployed. Once you have done that you just have to build and run the Web Api.
  
- (Note: if you want to deploy it in a non local database you have to change de connectiong string called db placed in appsetting.json file).
+ (Note: if you want to deploy it in a non local database, you have to change connectiong string called db placed in appsetting.json file).
  
