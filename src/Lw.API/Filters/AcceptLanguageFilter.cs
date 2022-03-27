@@ -6,15 +6,23 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Lw.API.Filters
 {
+    /// <summary>
+    /// AcceptLanguageFilter
+    /// </summary>
     public class AcceptLanguageFilter : IOperationFilter
     {
+        /// <summary>
+        /// Apply headers open api documentation
+        /// </summary>
+        /// <param name="operation">The operation</param>
+        /// <param name="context">The context</param>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             operation.Parameters.Add(new OpenApiParameter
             {
                 Name = "Accept-Language",
                 In = ParameterLocation.Header,
-                Description = "Language to traslate the sentence if it is null, all available translations will be returned",
+                Description = "Language to translate the sentence if it is null, all available translations will be returned",
                 Schema = new OpenApiSchema()
                 {
                     Type = "String",
@@ -30,6 +38,12 @@ namespace Lw.API.Filters
             });
         }
 
+        /// <summary>
+        /// Gets the enum language from the accept language header
+        /// </summary>
+        /// <param name="headerValue">The header value</param>
+        /// <returns></returns>
+        /// <exception cref="ApiBadRequestException">Bad request in case the language is not supported</exception>
         public static LanguageEnum? GetEnumFromAcceptLanguage(string headerValue)
         {
             if (string.IsNullOrEmpty(headerValue))

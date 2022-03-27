@@ -18,6 +18,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen( options =>
 {
     options.OperationFilter<AcceptLanguageFilter>();
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
 });
 // Json response options
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -29,7 +32,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 //Depndency injection
 builder.Services
     .AddScoped<ITranslationService, TranslationService>()
-    .AddScoped<ITranslationRepository, TranslationRepository>();
+    .AddTransient<ITranslationRepository, TranslationRepository>();
 
 //Automapper injection
 builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfiles)));

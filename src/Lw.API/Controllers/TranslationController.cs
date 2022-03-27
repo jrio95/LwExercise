@@ -28,7 +28,7 @@ namespace Lw.API.Controllers
          }
 
         /// <summary>
-        /// Get translation endpoint. If the language is specified it will return the translation in that language. 
+        /// Get translations. If Accept-Language header is specified it will return the translation specified. 
         /// If the Accept-Language header is not specified it will return all available languages
         /// </summary>
         /// <returns>List of translations</returns>
